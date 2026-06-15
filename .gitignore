@@ -1,3 +1,6 @@
+# Secrets (never commit)
+.github_pat
+
 # Local dataset (143 MB — exceeds GitHub 100 MB limit; download from Kaggle)
 Raw_Data/creditcard.csv
 
@@ -12,3 +15,10 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+node_modules/
+package.json
+package-lock.json
+deployment_steps.js
+.githubpat
+*.docx.tmp
+~$*
