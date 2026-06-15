@@ -34,7 +34,9 @@ if [ -z "$GH_PAT" ]; then
 fi
 
 # ── Push ─────────────────────────────────────────────────────────────────────
-git push "https://${GH_PAT}@github.com/${REPO}.git" main
+# --force-with-lease: safe after history rewrite (e.g. removing large files).
+# Remove this flag once local and remote histories match again.
+git push --force-with-lease "https://${GH_PAT}@github.com/${REPO}.git" main
 
 echo "✓ Pushed to github.com/${REPO}"
 
