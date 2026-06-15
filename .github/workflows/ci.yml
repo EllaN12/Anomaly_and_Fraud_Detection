@@ -1,0 +1,66 @@
+name: CI — Run Pipeline & Push Results
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # allows manual trigger from GitHub UI
+
+permissions:
+  contents: write             # needed to push outputs back to the repo
+
+jobs:
+  run-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      # ── 2. Python setup ────────────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install imbalanced-learn   # enables SMOTE variant in script 04
+
+      # ── 3. Download dataset ────────────────────────────────────────────────
+      # creditcard.csv is large (150 MB) and not committed to the repo.
+      # Store the Kaggle API token as repo secrets KAGGLE_USERNAME + KAGGLE_KEY,
+      # or replace this step with your own download method.
+      - name: Download creditcard.csv from Kaggle
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          pip install kaggle
+          mkdir -p Raw_Data
+          kaggle datasets download -d mlg-ulb/creditcardfraud -p Raw_Data --unzip
+        # If you store the CSV elsewhere (S3, GDrive, etc.) replace the above
+        # with your own download command and remove the Kaggle secrets.
+
+      # ── 4. Run full pipeline ───────────────────────────────────────────────
+      - name: Run all scripts
+        run: python run_all.py
+
+      # ── 5. Commit & push outputs back to main ─────────────────────────────
+      - name: Commit updated outputs
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add outputs/
+          # Only commit if something actually changed
+          git diff --cached --quiet && echo "No output changes to commit" || \
+            git commit -m "ci: refresh pipeline outputs [skip ci]"
+
+      - name: Push to main
+        run: git push origin main
