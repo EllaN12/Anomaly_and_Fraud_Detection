@@ -7,7 +7,7 @@ End-to-end anomaly and fraud detection pipeline on 284,807 real credit card tran
 ## Dataset
 
 **Source:** [Kaggle — Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)  
-**File:** `Raw_Data/creditcard.csv` (150.8 MB)
+**File:** `Raw_Data/creditcard.csv` (150.8 MB) — **not in git** (exceeds GitHub's 100 MB limit). Download from Kaggle and place in `Raw_Data/` before running the scripts. See [Raw_Data/README.md](Raw_Data/README.md).
 
 | Attribute | Value |
 |-----------|-------|

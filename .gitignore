@@ -1,0 +1,14 @@
+# Local dataset (143 MB — exceeds GitHub 100 MB limit; download from Kaggle)
+Raw_Data/creditcard.csv
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
