@@ -1,0 +1,28 @@
+[07] Loading creditcard.csv ...
+     284,807 rows  |  492 fraud  (0.173%)
+
+[07] Computing SCM suitability scores for all PCA components ...
+
+  Rank   Feature             Direction  disc_power   |sep|σ   scm_score
+     1       V14     fraud < non-fraud      0.4492   7.7857      3.4970  ◄ selected
+     2       V12     fraud < non-fraud      0.4370   6.6286      2.8970
+     3       V17     fraud < non-fraud      0.3082   8.9096      2.7459
+     4       V10     fraud < non-fraud      0.4141   5.4460      2.2549
+     5        V3     fraud < non-fraud      0.4121   4.8275      1.9893
+     6       V16     fraud < non-fraud      0.3471   4.9091      1.7041
+     7        V7     fraud < non-fraud      0.3358   4.7322      1.5891
+     8       V11     fraud > non-fraud      0.4181   3.7949      1.5866
+     9        V4     fraud > non-fraud      0.4383   3.2515      1.4250
+    10        V9     fraud < non-fraud      0.3441   2.3735      0.8167
+    11        V2     fraud > non-fraud      0.3550   2.2187      0.7875
+    12        V1     fraud < non-fraud      0.2949   2.4770      0.7305
+
+[07] Selected feature: V14
+     disc_power=0.4492  |std_sep|=7.7857σ  direction=fraud < non-fraud
+
+[07] Generating plots ...
+  Saved: feature_scm_suitability.png
+  Saved: feature_discrimination_ranked.png
+  Saved: feature_discrimination_densities.png
+
+[07] Done.  Recommended SCM donor feature: V14

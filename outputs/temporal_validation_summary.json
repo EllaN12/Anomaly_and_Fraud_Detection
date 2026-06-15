@@ -1,0 +1,97 @@
+{
+  "temporal_isoforest": {
+    "mean_pr_auc": 0.1762,
+    "std_pr_auc": 0.2734,
+    "mean_f1": 0.1992,
+    "std_f1": 0.2765,
+    "mean_recall": 0.3365,
+    "mean_prec": 0.1955
+  },
+  "temporal_rf_balanced": {
+    "mean_pr_auc": 0.7831,
+    "std_pr_auc": 0.0344,
+    "mean_f1": 0.8099,
+    "std_f1": 0.026,
+    "mean_recall": 0.7489,
+    "mean_prec": 0.8872
+  },
+  "random_split_isoforest": {
+    "pr_auc": 0.131,
+    "f1": 0.1973,
+    "precision": 0.1774,
+    "recall": 0.2222,
+    "mcc": 0.197,
+    "threshold": 0.649558
+  },
+  "random_split_rf_balanced": {
+    "pr_auc": 0.8095,
+    "f1": 0.8265,
+    "precision": 0.8351,
+    "recall": 0.8182,
+    "mcc": 0.8263,
+    "threshold": 0.62
+  },
+  "psi_features_tracked": [
+    "V14",
+    "V4",
+    "V12",
+    "V11",
+    "V10"
+  ],
+  "psi_summary_by_fold": [
+    {
+      "fold": 1,
+      "psi_max": 2.9285,
+      "psi_mean": 1.0177
+    },
+    {
+      "fold": 2,
+      "psi_max": 0.8111,
+      "psi_mean": 0.3594
+    },
+    {
+      "fold": 3,
+      "psi_max": 0.4595,
+      "psi_mean": 0.174
+    },
+    {
+      "fold": 4,
+      "psi_max": 0.4786,
+      "psi_mean": 0.2399
+    }
+  ],
+  "psi_per_feature_by_fold": [
+    {
+      "fold": 1.0,
+      "V14": 1.4748,
+      "V4": 0.0577,
+      "V12": 2.9285,
+      "V11": 0.4836,
+      "V10": 0.1439
+    },
+    {
+      "fold": 2.0,
+      "V14": 0.6667,
+      "V4": 0.1587,
+      "V12": 0.8111,
+      "V11": 0.0317,
+      "V10": 0.1288
+    },
+    {
+      "fold": 3.0,
+      "V14": 0.0696,
+      "V4": 0.1862,
+      "V12": 0.0633,
+      "V11": 0.4595,
+      "V10": 0.0913
+    },
+    {
+      "fold": 4.0,
+      "V14": 0.1293,
+      "V4": 0.2125,
+      "V12": 0.3205,
+      "V11": 0.4786,
+      "V10": 0.0586
+    }
+  ]
+}

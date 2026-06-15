@@ -1,0 +1,67 @@
+[06] Loading creditcard.csv ...
+     shape=(284807, 31)  fraud=492  time_range=0–172792s
+
+[06] 6 blocks of 8 h each:
+  Blk      Hours        N   Fraud      Rate
+    0    0– 8h    17539      81    0.462%
+    1    8–16h    61044     110    0.180%
+    2   16–24h    66203      90    0.136%
+    3   24–32h    17739      75    0.423%
+    4   32–40h    62340      59    0.095%
+    5   40–48h    59942      77    0.128%
+
+[06] Walk-forward validation — 4 folds:
+
+[06] PSI features (top 5 by disc_power): V14, V4, V12, V11, V10
+
+  ── Fold 1 (train=B0–B0, val=B1, test=B2) ──
+     train:   17539 rows  81 fraud  rate=0.462%
+     val  :   61044 rows  110 fraud
+     test :   66203 rows  90 fraud
+     IsoForest   → PR AUC=0.075  F1=0.108  Prec=0.175  Rec=0.078
+     RF balanced → PR AUC=0.763  F1=0.820  Prec=0.930  Rec=0.733
+     PSI         : V14=1.475  V4=0.058  V12=2.928  V11=0.484  V10=0.144
+     PSI max=2.9285  mean=1.0177  ⚠ caution  ⛔ retrain
+
+  ── Fold 2 (train=B0–B1, val=B2, test=B3) ──
+     train:   78583 rows  191 fraud  rate=0.243%
+     val  :   66203 rows  90 fraud
+     test :   17739 rows  75 fraud
+     IsoForest   → PR AUC=0.585  F1=0.610  Prec=0.562  Rec=0.667
+     RF balanced → PR AUC=0.807  F1=0.834  Prec=0.829  Rec=0.840
+     PSI         : V14=0.667  V4=0.159  V12=0.811  V11=0.032  V10=0.129
+     PSI max=0.8111  mean=0.3594  ⚠ caution  ⛔ retrain
+
+  ── Fold 3 (train=B0–B2, val=B3, test=B4) ──
+     train:  144786 rows  281 fraud  rate=0.194%
+     val  :   17739 rows  75 fraud
+     test :   62340 rows  59 fraud
+     IsoForest   → PR AUC=0.018  F1=0.012  Prec=0.010  Rec=0.017
+     RF balanced → PR AUC=0.745  F1=0.774  Prec=0.872  Rec=0.695
+     PSI         : V14=0.070  V4=0.186  V12=0.063  V11=0.459  V10=0.091
+     PSI max=0.4595  mean=0.1740  ⚠ caution  ⛔ retrain
+
+  ── Fold 4 (train=B0–B3, val=B4, test=B5) ──
+     train:  162525 rows  356 fraud  rate=0.219%
+     val  :   62340 rows  59 fraud
+     test :   59942 rows  77 fraud
+     IsoForest   → PR AUC=0.027  F1=0.067  Prec=0.035  Rec=0.584
+     RF balanced → PR AUC=0.817  F1=0.812  Prec=0.918  Rec=0.727
+     PSI         : V14=0.129  V4=0.213  V12=0.321  V11=0.479  V10=0.059
+     PSI max=0.4786  mean=0.2399  ⚠ caution  ⛔ retrain
+
+[06] Random split baseline (60/20/20 stratified) ...
+   IsoForest  → PR AUC=0.131  F1=0.197  Prec=0.177  Rec=0.222
+   RF balanced→ PR AUC=0.809  F1=0.827  Prec=0.835  Rec=0.818
+
+[06] ── Summary ────────────────────────────────────────────
+  Method                           PR AUC      ±       F1      ±
+  IsoForest (random split)          0.131           0.197
+  IsoForest (temporal avg)          0.176 ±0.273    0.199 ±0.277
+  RF balanced (random split)        0.809           0.827
+  RF balanced (temporal avg)        0.783 ±0.034    0.810 ±0.026
+
+[06] Generating plots ...
+     Saved 4 plots to /Users/ellandalla/Documents/GitHub/Anomaly_and_Fraud_Detection/outputs
+
+[06] Done.
