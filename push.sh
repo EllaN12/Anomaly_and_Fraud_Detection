@@ -1,31 +1,41 @@
 #!/usr/bin/env bash
 # push.sh — authenticate with a GitHub PAT and push to origin/main
 #
-# Usage:
-#   ./push.sh                   # reads GH_PAT from env or prompts
-#   GH_PAT=ghp_xxx ./push.sh   # inline token
+# Usage (pick one):
+#   ./push.sh                         # Keychain, .github_pat file, or prompt
+#   export GH_PAT='your_token'; ./push.sh
 #
-# One-time setup:
-#   1. Go to GitHub → Settings → Developer settings → Personal access tokens → Fine-grained
-#   2. Generate a token with Contents: Read & Write for this repo
-#   3. Add to your shell profile:  export GH_PAT=ghp_yourtoken
-#      OR store in macOS Keychain (see below)
+# Easiest if paste fails in the terminal:
+#   1. Create .github_pat in THIS folder (one line = your token). File is gitignored.
+#   2. Run: ./push.sh
+#
+# One-time Keychain setup (macOS):
+#   security add-generic-password -a "$USER" -s "github-pat" -w 'YOUR_TOKEN' -U
 
 set -euo pipefail
 
 REPO="EllaN12/Anomaly_and_Fraud_Detection"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+PAT_FILE="$ROOT/.github_pat"
+PUSH_URL="https://${GH_PAT:-}@github.com/${REPO}.git"
 
 # ── Resolve token ─────────────────────────────────────────────────────────────
-if [ -z "${GH_PAT:-}" ]; then
-  # Try macOS Keychain first (no plaintext token in env)
-  if command -v security &>/dev/null; then
-    GH_PAT=$(security find-generic-password -a "$USER" -s "github-pat" -w 2>/dev/null || true)
-  fi
+if [ -z "${GH_PAT:-}" ] && [ -f "$PAT_FILE" ]; then
+  GH_PAT="$(tr -d '[:space:]' < "$PAT_FILE")"
+  echo "Using token from .github_pat"
+fi
+
+if [ -z "${GH_PAT:-}" ] && command -v security &>/dev/null; then
+  GH_PAT=$(security find-generic-password -a "$USER" -s "github-pat" -w 2>/dev/null || true)
+  [ -n "$GH_PAT" ] && echo "Using token from macOS Keychain"
 fi
 
 if [ -z "${GH_PAT:-}" ]; then
-  read -rsp "GitHub PAT (input hidden): " GH_PAT
+  echo "Paste often fails in Cursor's hidden prompt. Options:"
+  echo "  • Save token to .github_pat (one line, no quotes) and rerun ./push.sh"
+  echo "  • Or run:  export GH_PAT=   then paste token after = and press Enter"
   echo
+  read -rp "GitHub PAT (visible as you paste): " GH_PAT
 fi
 
 if [ -z "$GH_PAT" ]; then
@@ -33,18 +43,23 @@ if [ -z "$GH_PAT" ]; then
   exit 1
 fi
 
+PUSH_URL="https://${GH_PAT}@github.com/${REPO}.git"
+
 # ── Push ─────────────────────────────────────────────────────────────────────
-# --force-with-lease: safe after history rewrite (e.g. removing large files).
-# Remove this flag once local and remote histories match again.
-git push --force-with-lease "https://${GH_PAT}@github.com/${REPO}.git" main
+git fetch origin
+REMOTE_SHA="$(git rev-parse origin/main)"
+echo "Remote main is at ${REMOTE_SHA:0:7}; pushing rewritten history…"
+
+# Explicit lease required when pushing to a URL (not "origin" remote name).
+git push --force-with-lease="refs/heads/main:${REMOTE_SHA}" "$PUSH_URL" main
 
 echo "✓ Pushed to github.com/${REPO}"
 
-# ── Optional: save token to macOS Keychain for next time ─────────────────────
-if command -v security &>/dev/null; then
-  read -rp "Save token to macOS Keychain for next run? [y/N] " SAVE
+if command -v security &>/dev/null && [ -f "$PAT_FILE" ]; then
+  read -rp "Save token to macOS Keychain and delete .github_pat? [y/N] " SAVE
   if [[ "$SAVE" =~ ^[Yy]$ ]]; then
     security add-generic-password -a "$USER" -s "github-pat" -w "$GH_PAT" -U
-    echo "✓ Saved to Keychain (service=github-pat)"
+    rm -f "$PAT_FILE"
+    echo "✓ Saved to Keychain; removed .github_pat"
   fi
 fi

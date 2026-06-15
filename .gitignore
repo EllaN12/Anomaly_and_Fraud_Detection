@@ -22,3 +22,8 @@ deployment_steps.js
 .githubpat
 *.docx.tmp
 ~$*
+*.github_pat
+push.sh
+.docx
+.claude
+
