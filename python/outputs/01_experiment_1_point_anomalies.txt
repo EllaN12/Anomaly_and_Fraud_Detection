@@ -1,0 +1,8 @@
+[01] Top 5 by anomaly score:
+        x         y  anomaly_score  outlier
+49.931732 98.235621       0.648050        1
+34.039137 72.545391       0.619371        0
+30.892313 59.531096       0.595494        0
+67.753894 56.127474       0.566401        0
+59.493495 30.697125       0.557165        0
+[01] Wrote exp1_point_anomalies.csv and exp1_point_anomalies.png

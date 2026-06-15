@@ -1,0 +1,3 @@
+[02] rows flagged by iforest : 9
+[02] rows flagged by STL/IQR : 3
+[02] Wrote exp2_timeseries_anomalies.csv + two PNGs

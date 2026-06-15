@@ -1,0 +1,23 @@
+[00] Reading creditcard.csv ...
+     shape = (284807, 31)
+     columns = ['Time', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount', 'Class']
+
+[00] Class imbalance (R: count(Class) %>% mutate(prop)):
+ Class      n     prop
+     0 284315 0.998273
+     1    492 0.001727
+
+[00] Saved density plot → amount_by_class_density.png
+
+[00] Numeric summary (Time, Amount, Class):
+                Time         Amount          Class
+count  284807.000000  284807.000000  284807.000000
+mean    94813.859575      88.349619       0.001727
+std     47488.145955     250.120109       0.041527
+min         0.000000       0.000000       0.000000
+25%     54201.500000       5.600000       0.000000
+50%     84692.000000      22.000000       0.000000
+75%    139320.500000      77.165000       0.000000
+max    172792.000000   25691.160000       1.000000
+
+[00] Done.

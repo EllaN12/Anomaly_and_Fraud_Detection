@@ -1,0 +1,66 @@
+{
+  "dataset": {
+    "n_transactions": 284807,
+    "n_fraud_true": 492,
+    "fraud_rate": 0.001727,
+    "imbalance_ratio": 577.9
+  },
+  "isolation_forest": {
+    "contamination_used": 0.001727,
+    "roc_auc": 0.9552,
+    "pr_auc": 0.1886,
+    "pr_auc_stabilized": 0.1691,
+    "threshold_99th": {
+      "label": "Threshold (a) 99th-percentile",
+      "TP": 311,
+      "FP": 2538,
+      "FN": 181,
+      "TN": 281777,
+      "precision": 0.1092,
+      "recall": 0.6321,
+      "f1": 0.1862,
+      "balanced_accuracy": 0.8116,
+      "mcc": 0.2601
+    },
+    "threshold_fraud_rate": {
+      "label": "Threshold (b) Fraud-rate calibrated",
+      "TP": 145,
+      "FP": 347,
+      "FN": 347,
+      "TN": 283968,
+      "precision": 0.2947,
+      "recall": 0.2947,
+      "f1": 0.2947,
+      "balanced_accuracy": 0.6467,
+      "mcc": 0.2935
+    },
+    "threshold_f1_optimal": {
+      "label": "Threshold (c) F1-optimal",
+      "TP": 163,
+      "FP": 392,
+      "FN": 329,
+      "TN": 283923,
+      "precision": 0.2937,
+      "recall": 0.3313,
+      "f1": 0.3114,
+      "balanced_accuracy": 0.665,
+      "mcc": 0.3107
+    }
+  },
+  "supervised_comparison": {
+    "rf_balanced": {
+      "label": "RF balanced (threshold=0.5)",
+      "TP": 409,
+      "FP": 9,
+      "FN": 83,
+      "TN": 9991,
+      "precision": 0.9785,
+      "recall": 0.8313,
+      "f1": 0.8989,
+      "balanced_accuracy": 0.9152,
+      "mcc": 0.8976,
+      "pr_auc": 0.9185,
+      "roc_auc": 0.9771
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "baseline": {
+    "threshold": 0.6255274732690874,
+    "n_flagged": 64
+  },
+  "evasion": {
+    "n_attacked": 64,
+    "n_evaded": 64,
+    "median_l2_evaded": 1.9721388558239892
+  },
+  "mimicry": {
+    "n_attackers": 500,
+    "n_slipped": 499
+  },
+  "poisoning_samples": [
+    {
+      "poison_fraction": 0.01,
+      "new_threshold": 0.6188711826429159,
+      "baseline_threshold": 0.6255274732690874,
+      "threshold_drift": -0.006656290626171568,
+      "flipped_to_flag": 9,
+      "flipped_to_normal": 9,
+      "jaccard_vs_baseline": 0.7534246575342466
+    },
+    {
+      "poison_fraction": 0.05,
+      "new_threshold": 0.6237225540224174,
+      "baseline_threshold": 0.6255274732690874,
+      "threshold_drift": -0.0018049192466700337,
+      "flipped_to_flag": 6,
+      "flipped_to_normal": 6,
+      "jaccard_vs_baseline": 0.8285714285714286
+    },
+    {
+      "poison_fraction": 0.1,
+      "new_threshold": 0.6212858574693558,
+      "baseline_threshold": 0.6255274732690874,
+      "threshold_drift": -0.004241615799731591,
+      "flipped_to_flag": 8,
+      "flipped_to_normal": 8,
+      "jaccard_vs_baseline": 0.7777777777777778
+    },
+    {
+      "poison_fraction": 0.2,
+      "new_threshold": 0.6429741378026066,
+      "baseline_threshold": 0.6255274732690874,
+      "threshold_drift": 0.017446664533519174,
+      "flipped_to_flag": 8,
+      "flipped_to_normal": 8,
+      "jaccard_vs_baseline": 0.7777777777777778
+    }
+  ],
+  "feature_masking_worst": {
+    "masked_feature": "SubmissionCount",
+    "jaccard_vs_baseline": 0.31958762886597936,
+    "n_flagged": 64
+  },
+  "seed_stability": {
+    "n_uncertain_calls": 53,
+    "mean_flag_std": 0.004182903230610347
+  },
+  "boundary_probe_median_abs_delta": {
+    "Score": NaN,
+    "SubmissionCount": 1.296875
+  },
+  "noise_stability": [
+    {
+      "sigma": 0.01,
+      "mean_jaccard": 0.9492545739397418,
+      "std_jaccard": 0.023252384068041556
+    },
+    {
+      "sigma": 0.05,
+      "mean_jaccard": 0.8782053688572888,
+      "std_jaccard": 0.033153318748248256
+    },
+    {
+      "sigma": 0.1,
+      "mean_jaccard": 0.8229178370087015,
+      "std_jaccard": 0.02727778425580115
+    },
+    {
+      "sigma": 0.25,
+      "mean_jaccard": 0.6947249987722877,
+      "std_jaccard": 0.023851125681269292
+    },
+    {
+      "sigma": 0.5,
+      "mean_jaccard": 0.4484472885873002,
+      "std_jaccard": 0.026334369785875385
+    }
+  ]
+}

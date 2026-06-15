@@ -1,0 +1,2 @@
+[03] Flagged 7 / 35 rows (expect the ~5 satellite + a few fringe base points).
+[03] Wrote exp3_cluster_anomalies.csv + exp3_cluster_anomalies.png
