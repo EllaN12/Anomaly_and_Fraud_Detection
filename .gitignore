@@ -19,6 +19,7 @@ node_modules/
 package.json
 package-lock.json
 deployment_steps.js
+unpacked_pptx/
 .githubpat
 *.docx.tmp
 ~$*
