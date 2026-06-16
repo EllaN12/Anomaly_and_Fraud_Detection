@@ -1,5 +1,7 @@
 # Secrets (never commit)
 .github_pat
+*.github_pat
+.githubpat
 
 # Local dataset (143 MB — exceeds GitHub 100 MB limit; download from Kaggle)
 Raw_Data/creditcard.csv
@@ -16,20 +18,15 @@ __pycache__/
 .idea/
 .vscode/
 node_modules/
+.claude/
+
+# Build/deploy helper files — not pushed
 package.json
 package-lock.json
 deployment_steps.js
 unpacked_pptx/
-.githubpat
 *.docx.tmp
 ~$*
-*.github_pat
-.push.sh/
-.docx/
-.claude/
-.github/
-.gitattributes/
-.gitignore/
-.gitkeep/
-.gitignore/
-
+push.sh
+*.docx
+.gitattributes
