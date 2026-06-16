@@ -24,7 +24,12 @@ unpacked_pptx/
 *.docx.tmp
 ~$*
 *.github_pat
-push.sh
-.docx
-.claude
+.push.sh/
+.docx/
+.claude/
+.github/
+.gitattributes/
+.gitignore/
+.gitkeep/
+.gitignore/
 
