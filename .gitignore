@@ -27,6 +27,6 @@ deployment_steps.js
 unpacked_pptx/
 *.docx.tmp
 ~$*
-push.sh
+*.push.sh
 *.docx
 .gitattributes
